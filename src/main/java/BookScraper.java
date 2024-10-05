@@ -19,10 +19,14 @@ public class BookScraper {
             for(Element book : books){
                String title = book.select("h3 > a").text();
                String price = book.select(".price_color").text();
+               String actual_price = price.substring(1);
 
-               System.out.println(title + "-" + price);
+               //get books with $20
+                if(Double.parseDouble(actual_price) < 20.0){
+                    System.out.println(title + "-" + price);
+                }
             }
-            System.out.println("==============================="); 
+            System.out.println("===============================");
         } catch (IOException e) {
             e.printStackTrace();
         }
